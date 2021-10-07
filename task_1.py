@@ -28,7 +28,7 @@ class Customer:
 
 
 class Order:
-    """Class contains data about the customer and products, calculates the total order value"""
+    """Class that contains data about the customer and products, calculates the total order value"""
     order_number = 0
 
     def __init__(self, customer, *products):
