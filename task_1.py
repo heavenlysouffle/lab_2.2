@@ -19,8 +19,6 @@ class Customer:
     """Class that describes a customer (contains surname, name, patronymic, phone number)"""
 
     def __init__(self, surname="surname", name="name", patronym="patronymic", number="phone number"):
-        if not isinstance(surname or name or patronym or number, str):
-            raise TypeError
         self.surname = surname
         self.name = name
         self.patronymic = patronym
@@ -52,3 +50,4 @@ product2 = Product(2, "description", "XS", 10)
 customer = Customer()
 order = Order(customer, product1, product2)
 print(order.get_total())
+
