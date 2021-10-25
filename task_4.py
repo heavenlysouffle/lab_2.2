@@ -1,4 +1,4 @@
-class BINARY_TREE:
+class Binary_tree:
     """Class that contains information about product prices (product code, price of 1 product)"""
 
     def __init__(self, code, price):
@@ -19,13 +19,13 @@ class BINARY_TREE:
             if code == self.code:
                 raise ValueError("there's already the same one")
             if code < self.code:
-                if self.left is None:
-                    self.left = BINARY_TREE(code, price)
+                if not self.left:
+                    self.left = Binary_tree(code, price)
                 else:
                     self.left.insert(code, price)
             elif code > self.code:
-                if self.right is None:
-                    self.right = BINARY_TREE(code, price)
+                if not self.right:
+                    self.right = Binary_tree(code, price)
                 else:
                     self.right.insert(code, price)
         else:
@@ -34,12 +34,12 @@ class BINARY_TREE:
     def search(self, code):
         """Method that search of the product in a binary tree"""
         if code < self.code:
-            if self.left is None:
-                print("not found")
+            if not self.left:
+                raise Exception("not found")
             return self.left.search(code)
         elif code > self.code:
-            if self.right is None:
-                print("not found")
+            if not self.right:
+                raise Exception("not found")
             return self.right.search(code)
         else:
             return self.price
@@ -56,7 +56,7 @@ class BINARY_TREE:
         return cost
 
 
-products1 = BINARY_TREE(1, 15.99)
+products1 = Binary_tree(1, 15.99)
 products1.insert(2, 9)
 products1.insert(3, 4.99)
 products1.insert(4, 4.49)
