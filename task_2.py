@@ -1,4 +1,5 @@
 import os.path
+import re
 
 
 class File_processing:
@@ -12,32 +13,28 @@ class File_processing:
     def chars(self):
         """Characters-counting method of class File_processing"""
         with open(self.__filepath, 'r') as file:
-            content = file.readlines()
             chars = 0
-            for line in content:
+            for line in file:
                 chars += len(line)
         return chars
 
     def words(self):
         """Words-counting method of class File_processing"""
         with open(self.__filepath, 'r') as file:
-            content = file.readlines()
             words = 0
-            for line in content:
+            for line in file:
+                line = re.sub(r'[,.;@#?!&$]+', ' ', line)
                 words += len(line.split())
         return words
 
     def sentences(self):
         """Sentences-counting method of class File_processing"""
         with open(self.__filepath, 'r') as file:
-            content = file.readlines()
             sentences = 0
-            for line in content:
-                line = line.replace("\n", "")
-                line = line.replace("\r", "")
-                line = line.replace('?', '.')
-                line = line.replace('!', '.')
-                sentences += line.count('.')
+            for line in file:
+                line = re.sub(r'[.?!]+', '|', line)
+                line = line.lstrip('|')
+                sentences += line.count('|')
         return sentences
 
 
