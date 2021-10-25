@@ -20,29 +20,50 @@ class Customer:
     """Class that describes a customer (contains surname, name, patronymic, phone number)"""
 
     def __init__(self, surname, name, patronym, phone):
-        if not (isinstance(surname, str) and isinstance(name, str) and isinstance(patronym, str) and isinstance(phone,
-                                                                                                                int)):
+        if not  isinstance(phone,int):
             raise TypeError
-        if not surname or not name or not patronym or not phone:
+        if not phone:
             raise ValueError("no data")
         self.__surname = surname
         self.__name = name
         self.__patronymic = patronym
         self.__number = phone
 
-    def set_customer(self, surname, name, patronym, phone):
-        if not (isinstance(surname, str) and isinstance(name, str) and isinstance(patronym, str) and isinstance(phone,
-                                                                                                                int)):
+    @property
+    def surname(self):
+        return self.__surname
+
+    @property
+    def name(self):
+        return self.__name
+
+    @property
+    def patronymic(self):
+        return self.__patronymic
+
+    @surname.setter
+    def surname(self, surname):
+        if not isinstance(surname, str):
             raise TypeError
-        if not surname or not name or not patronym or not phone:
+        if not surname:
             raise ValueError("no data")
         self.__surname = surname
-        self.__name = name
-        self.__patronymic = patronym
-        self.__number = phone
 
-    def get_customer(self):
-        return self.__surname, self.__name, self.__patronymic, self.__number
+    @name.setter
+    def name(self, name):
+        if not isinstance(name, str):
+            raise TypeError
+        if not name:
+            raise ValueError("no data")
+        self.__name = name
+
+    @patronymic.setter
+    def patronymic(self, patronym):
+        if not isinstance(patronym, str):
+            raise TypeError
+        if not patronym:
+            raise ValueError("no data")
+        self.__patronymic = patronym
 
 
 class Order:
@@ -79,10 +100,10 @@ class Order:
 
 
 product1 = Product(5.99, "description1", "S")
+
 product2 = Product(12, "description2", "XL")
 customer1 = Customer("Bykova", "Polina", "Olegovna", 3452345768)
 order1 = Order(customer1)
-print(customer1.get_customer())
 order1.add(product1)
 order1.add(product2)
 print("{:,.2f}".format(order1.get_total()))
